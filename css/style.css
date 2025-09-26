@@ -72,6 +72,7 @@
     --body-font-weight: var(--font-weight-4);
     --headline1-font-weight: var(--font-weight-7);
     --headline1-font-size: var(--font-size-fluid-3);
+    --headline-step: 1.25em;
 
     @media (width >=700px) {
       --headline1-font-size: var(--extend-font-size-fluid-4);
@@ -344,9 +345,8 @@
 
   .headline-container {
     display: block;
-    height: 1em;
-    /* 정확히 한 줄 높이 */
-    line-height: 1;
+    height: var(--headline-step);
+    line-height: var(--headline-step);
     overflow: hidden;
     /* clip → hidden */
     position: relative;
@@ -360,16 +360,18 @@
     inline-size: 100%;
     will-change: transform;
     backface-visibility: hidden;
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
     animation: headline-step 6s ease-in-out 1 both
   }
 
   .scroll-item {
     color: var(--highlight-text);
     display: block;
+    height: var(--headline-step);
+    line-height: var(--headline-step);
     white-space: nowrap;
     min-inline-size: 100%;
-    overflow: clip;
+    overflow: hidden;
     text-overflow: ellipsis;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -429,16 +431,16 @@
 
   0%,
   30% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 
   33%,
   63% {
-    transform: translateY(-105%);
+    transform: translate3d(0, calc(-1 * var(--headline-step)), 0);
   }
 
   66%,
   100% {
-    transform: translateY(-200%);
+    transform: translate3d(0, calc(-2 * var(--headline-step)), 0);
   }
 }
