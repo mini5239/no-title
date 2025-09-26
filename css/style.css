@@ -340,28 +340,28 @@
     display: inline-grid;
     inline-size: 100%;
     white-space: nowrap;
-    line-height: 1; 
   }
 
   .headline-container {
+    display: block;
     height: 1em;
-    /* 1줄만 보이게 확정 */
+    /* 정확히 한 줄 높이 */
     line-height: 1;
     overflow: hidden;
+    /* clip → hidden */
     position: relative;
   }
 
   .headline-scroller {
     display: grid;
     position: absolute;
+    inset: 0;
     text-align: center;
     inline-size: 100%;
-    inset: 0;
-    animation-name: push-up;
-    animation-duration: 5s;
-    animation-delay: 11s;
-    animation-timing-function: var(--timing-function-fast-ease-in-out);
-    animation-fill-mode: forwards;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    animation: headline-step 6s ease-in-out 1 both
   }
 
   .scroll-item {
@@ -371,6 +371,8 @@
     min-inline-size: 100%;
     overflow: clip;
     text-overflow: ellipsis;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   .hero-content {
@@ -423,13 +425,19 @@
   }
 }
 
-@keyframes push-up {
+@keyframes headline-step {
 
-  10%,
-  90% {
-    transform: translateY(-100%);
+  0%,
+  30% {
+    transform: translateY(0);
   }
 
+  33%,
+  63% {
+    transform: translateY(-105%);
+  }
+
+  66%,
   100% {
     transform: translateY(-200%);
   }
