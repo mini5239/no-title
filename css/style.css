@@ -3,6 +3,7 @@
 @import 'https://unpkg.com/open-props@beta.5' layer(library);
 
 @layer reset {
+
   *,
   ::before,
   ::after {
@@ -58,11 +59,9 @@
     --button-link-primary-text: white;
     --button-link-primary-face: var(--red);
     --button-link-primary-border: none;
-    --button-link-primary-hover-face: color-mix(
-      in oklch,
-      var(--red),
-      transparent 20%
-    );
+    --button-link-primary-hover-face: color-mix(in oklch,
+        var(--red),
+        transparent 20%);
     --button-link-border-radius: var(--radius-round);
     --nav-logo-inline-size: var(--size-12);
     --icon-btn-block-size: var(--size-8);
@@ -73,16 +72,19 @@
     --body-font-weight: var(--font-weight-4);
     --headline1-font-weight: var(--font-weight-7);
     --headline1-font-size: var(--font-size-fluid-3);
-    @media (width >= 700px) {
+
+    @media (width >=700px) {
       --headline1-font-size: var(--extend-font-size-fluid-4);
     }
 
     --nav-link-font-size: var(--font-size-1);
+
     @media (width < 1056px) {
       --nav-link-font-size: var(--font-size-3);
     }
 
     --nav-block-size: 100px;
+
     @media (width < 1056px) {
       --nav-block-size: 80px;
     }
@@ -302,7 +304,8 @@
     overflow: clip;
     position: absolute;
     z-index: -1;
-    @media (width >= 700px) {
+
+    @media (width >=700px) {
       animation: 3s linear 5s forwards animate-ratio;
     }
   }
@@ -323,6 +326,7 @@
     block-size: 100%;
     display: block;
     object-fit: cover;
+    pointer-events: none;
   }
 
   .hero-header {
@@ -336,12 +340,14 @@
     display: inline-grid;
     inline-size: 100%;
     white-space: nowrap;
+    line-height: 1; 
   }
 
   .headline-container {
-    display: block;
-    block-size: 1lh;
-    overflow-y: clip;
+    height: 1em;
+    /* 1줄만 보이게 확정 */
+    line-height: 1;
+    overflow: hidden;
     position: relative;
   }
 
@@ -418,6 +424,7 @@
 }
 
 @keyframes push-up {
+
   10%,
   90% {
     transform: translateY(-100%);
